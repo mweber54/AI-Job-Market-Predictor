@@ -1,28 +1,38 @@
-import os
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression  # as an example model
-from sklearn.metrics import mean_squared_error, r2_score
 
-# Check if the dataset file exists
-dataset_path = '/workspaces/AI-Job-Market-Predictor/job_market_dataset.csv'
-if not os.path.exists(dataset_path):
-    print(f"Dataset not found at {dataset_path}. Creating a sample dataset...")
-    import create_sample_dataset
+# Filepath to the CSV file
+file_path = '/workspaces/AI-Job-Market-Predictor/job_market_dataset.csv'
 
-# Load the dataset
-data = pd.read_csv(dataset_path)
+# Define column names based on the CSV structure
+column_names = [
+    "Job Title", "Industry", "Company Size", "Location", "Experience Level",
+    "Education Level", "Skill", "Salary", "Remote Work", "Job Outlook"
+]
 
-# Display the first few rows
+# Read the CSV file
+df = pd.read_csv(file_path, names=column_names, header=None)
+
+# Display the first few rows of the dataframe
 print("First 5 rows of the dataset:")
-print(data.head())
+print(df.head())
 
 # Explore dataset summary statistics
 print("\nDataset summary:")
-print(data.describe())
+print(df.describe())
 
 # Check for missing values and data types
 print("\nDataset info:")
-print(data.info())
+print(df.info())
+
+# Example: Create a bar chart of average salaries by job title
+avg_salaries = df.groupby('Job Title')['Salary'].mean()
+avg_salaries.plot(kind='bar', figsize=(10, 6))
+
+# Add title and labels
+plt.title('Average Salaries by Job Title')
+plt.xlabel('Job Title')
+plt.ylabel('Average Salary')
+
+# Show the plot
+plt.show()
