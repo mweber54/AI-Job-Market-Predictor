@@ -1,4 +1,4 @@
-Job Vulnerability to AI Automation Predictor
+**Job Vulnerability to AI Automation Predictor**
 This project aims to predict the vulnerability of jobs to AI automation. Using a combination of machine learning techniques and interactive data visualization, the project trains a model to predict the "AI Impact" of a job (expressed as a percentage) based on various job features, and then compares the actual AI Impact values with the predictions.
 
 Table of Contents
